@@ -22,30 +22,32 @@ public class PreparadorPizza {
         this.factory = factory;
     }
 
-    public static void main(String args[]) {
-    try {
-        Ingrediente[] ingredientes = new Ingrediente[]{
-            new Ingrediente("queso", 1),
-            new Ingrediente("jamon", 2)
-        };
+    public static void main(String[] args) {
+        try {
+            Ingrediente[] ingredientes = new Ingrediente[]{
+                    new Ingrediente("queso", 1),
+                    new Ingrediente("jamon", 2)
+            };
 
-        // --- Pizza DELGADA ---
-        System.out.println("\n=== Preparando Pizza DELGADA ===");
-        PizzaFactory factoryDelgada = FactoryProducer.getFactory(PizzaTipo.DELGADA);
-        PreparadorPizza ppDelgada = new PreparadorPizza(factoryDelgada);
-        ppDelgada.prepararPizza(ingredientes, Tamano.MEDIANO);
+            // Lista de tipos y tamaños para probar
+            PizzaTipo[] tipos = { PizzaTipo.DELGADA, PizzaTipo.GRUESA, PizzaTipo.INTEGRAL };
+            Tamano[] tamanos = { Tamano.PEQUENO, Tamano.MEDIANO, Tamano.GRANDE };
 
-        // --- Pizza INTEGRAL ---
-        System.out.println("\n=== Preparando Pizza INTEGRAL ===");
-        PizzaFactory factoryIntegral = FactoryProducer.getFactory(PizzaTipo.INTEGRAL);
-        PreparadorPizza ppIntegral = new PreparadorPizza(factoryIntegral);
-        ppIntegral.prepararPizza(ingredientes, Tamano.MEDIANO);
+            // Recorrer cada tipo y tamaño de pizza
+            for (PizzaTipo tipo : tipos) {
+                for (Tamano tam : tamanos) {
+                    System.out.println("\n=== Preparando Pizza " + tipo + " - Tamaño " + tam + " ===");
+                    PizzaFactory factory = FactoryProducer.getFactory(tipo);
+                    PreparadorPizza preparador = new PreparadorPizza(factory);
+                    preparador.prepararPizza(ingredientes, tam);
+                }
+            }
 
-    } catch (ExcepcionParametrosInvalidos ex) {
-        Logger.getLogger(PreparadorPizza.class.getName())
-            .log(Level.SEVERE, "Problema en la preparación de la Pizza", ex);
+        } catch (ExcepcionParametrosInvalidos ex) {
+            Logger.getLogger(PreparadorPizza.class.getName())
+                    .log(Level.SEVERE, "Problema en la preparación de la Pizza", ex);
+        }
     }
-}
 
     public void prepararPizza(Ingrediente[] ingredientes, Tamano tam)
             throws ExcepcionParametrosInvalidos {
