@@ -1,5 +1,7 @@
 # Ejercicio de pizzas Santiago Urrego
 
-### En este readme se dejará el diagrama de clases del ejercicio, sin embargo se encuentra la imagen en la parte de UML junto con el model y el consoleview
+## Diagrama de clases
 
-![Diagrama UML](/src/main/java/edu/unisabana/pizzafactory/UML/pizza-class-diagram.png)
+Acá se podrá encontrar el diagrama de clases para este ejercicio en formato SVG, por lo que se sugiere abrir la imagen en una pestaña nueva y así ver el contenido a detalle
+
+![Diagrama UML](/UML/pizza-class-diagram.svg)
